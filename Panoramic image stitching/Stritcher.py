@@ -13,7 +13,7 @@ class Stitcher:
         """
         todo
 
-        """"
+        """
 
 
 
@@ -50,11 +50,11 @@ class Stitcher:
             if len(m) == 2 and m[0].distance < m[1].distance * ratio:
                 matches.append((m[0].trainIdx, m[0].queryIdx))
             
-            # 检查是否有足够的匹配点
-            if len(matches) > 4:
-                ptsA = np.float32([kpsA[i], for (_, i) in matches])
-                ptsB = np.float32([kpsB[i], for (i, _) in matches])
-                # 计算单应矩阵
-                (H, status) = cv2.findHomography(ptsA, ptsB, cv2.RANSAC, reprojThresh)
-                return (matches, H, status)
-            return None 
+        # 检查是否有足够的匹配点
+        if len(matches) > 4:
+            ptsA = np.float32([kpsA[i] for (_, i) in matches])
+            ptsB = np.float32([kpsB[i] for (i, _) in matches])
+            # 计算单应矩阵
+            (H, status) = cv2.findHomography(ptsA, ptsB, cv2.RANSAC, reprojThresh)
+            return (matches, H, status)
+        return None 
