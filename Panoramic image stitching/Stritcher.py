@@ -32,7 +32,7 @@ class Stitcher:
         # 创建SIFT生成器
         describe = cv2.SIFT_create()
         # 检测关键点和描述符
-        (Kps, features) = describe.detectAndCompute(image, None)
+        (Kps, features) = describe.detectAndCompute(gray, None)
         # 将关键点转换为Numpy数组
         kps = np.float32([kp.pt for kp in Kps])
         return (kps, features)
